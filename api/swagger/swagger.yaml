@@ -1,0 +1,214 @@
+swagger: '2.0'
+info:
+  version: 0.0.1
+  title: deploymentManager API
+host: 'localhost:10709'
+basePath: /dm
+schemes:
+  - http
+consumes:
+  - multipart/form-data
+produces:
+  - application/json
+  - text/plain
+paths:
+  /deployment:
+    x-swagger-router-controller: controller
+    post:
+      description: Uploads the zip_file
+      operationId: createDeployment
+      parameters:
+      - name: authorization
+        in: header
+        type: string
+        description: The JWT token for req.validation
+      responses:
+        '200':
+          description: meta data of file
+        '400':
+          description: Bad parameters
+        '500':
+          description: Internal server error
+    delete:
+      description: Uploads the deployment schema
+      operationId: deleteDeployment
+      parameters:
+      - name: authorization
+        in: header
+        type: string
+        description: The JWT token for req.validation
+      responses:
+        '200':
+          description: meta data of file
+        '400':
+          description: Bad parameters
+        '500':
+          description: Internal server error
+  /updateDeployment:
+    x-swagger-router-controller: controller
+    post:
+      description: Upload schema and zip of the deployment
+      operationId: updateDeployment
+      parameters:
+      - name: authorization
+        in: header
+        type: string
+        description: The JWT token for req.validation
+      responses:
+        '200':
+          description: meta data of file
+        '400':
+          description: Bad parameters
+        '500':
+          description: Internal server error
+  /repairDeployment:
+    x-swagger-router-controller: controller
+    post:
+      description: Uploads the deployment schema
+      operationId: repairDeployment
+      parameters:
+      - name: authorization
+        in: header
+        type: string
+        description: The JWT token for req.validation
+      responses:
+        '200':
+          description: meta data of file
+        '400':
+          description: Bad parameters
+        '500':
+          description: Internal server error
+  /apiChange:
+    x-swagger-router-controller: controller
+    post:
+      description: Uploads the deployment schema
+      operationId: apiChange
+      parameters:
+      - name: authorization
+        in: header
+        type: string
+        description: The JWT token for req.validation
+      responses:
+        '200':
+          description: meta data of file
+        '400':
+          description: Bad parameters
+        '500':
+          description: Internal server error
+  /kubedeploy:
+    x-swagger-router-controller: controller
+    post:
+      description: Uploads the deployment schema
+      operationId: kubeDeployCreate
+      parameters:
+      - name: authorization
+        in: header
+        type: string
+        description: The JWT token for req.validation
+      responses:
+        '200':
+          description: meta data of file
+        '400':
+          description: Bad parameters
+        '500':
+          description: Internal server error
+    delete:
+      description: Uploads the zip_file
+      operationId: kubeDeployDelete
+      parameters:
+      - name: authorization
+        in: header
+        type: string
+        description: The JWT token for req.validation
+      responses:
+        '200':
+          description: meta data of file
+        '400':
+          description: Bad parameters
+        '500':
+          description: Internal server error
+  /kubesvc:
+    x-swagger-router-controller: controller
+    post:
+      description: Uploads the deployment schema
+      operationId: kubeSvcCreate
+      parameters:
+      - name: authorization
+        in: header
+        type: string
+        description: The JWT token for req.validation
+      responses:
+        '200':
+          description: meta data of file
+        '400':
+          description: Bad parameters
+        '500':
+          description: Internal server error
+    delete:
+      description: Uploads the zip_file
+      operationId: kubeSvcDelete
+      parameters:
+      - name: authorization
+        in: header
+        type: string
+        description: The JWT token for req.validation
+      responses:
+        '200':
+          description: meta data of file
+        '400':
+          description: Bad parameters
+        '500':
+          description: Internal server error
+  /scaleDeployment:
+    x-swagger-router-controller: controller
+    post:
+      description: Uploads the deployment schema and the scale
+      operationId: scaleDeployment
+      parameters:
+      - name: authorization
+        in: header
+        type: string
+        description: The JWT token for req.validation
+      responses:
+        '200':
+          description: meta data of file
+        '400':
+          description: Bad parameters
+        '500':
+          description: Internal server error
+  /health:
+    x-swagger-router-controller: controller
+    get:
+      description: healthCheck api 
+      operationId: health
+      parameters:
+        - name: authorization
+          in: header
+          type: string
+          description: The JWT token for req.validation
+      responses:
+        '200':
+          description: List of the entites
+        '400':
+          description: Bad parameters
+        '404':
+          description: No records to list with the given parameter set.
+        '500':
+          description: Internal server error
+  /generateImage:
+    x-swagger-router-controller: controller
+    post:
+      description: Generate and download Image
+      operationId: createImage
+      parameters:
+      - name: authorization
+        in: header
+        type: string
+        description: The JWT token for req.validation
+      responses:
+        '200':
+          description: meta data of file
+        '400':
+          description: Bad parameters
+        '500':
+          description: Internal server error

@@ -1,0 +1,40 @@
+{
+  "name": "odp-deployment-manager",
+  "version": "3.9.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "@appveen/gridfs-stream": "1.0.0",
+    "@appveen/odp-utils": "git+https://github.com/appveen/odp-utils.git",
+    "@appveen/swagger-mongoose-crud": "1.1.2",
+    "@appveen/utils": "1.1.2",
+    "adm-zip": "^0.4.13",
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.19.0",
+    "express": "^4.15.2",
+    "express-fileupload": "^0.4.0",
+    "fs-extra": "^7.0.1",
+    "js-yaml": "^3.13.1",
+    "lodash": "^4.17.4",
+    "log4js": "2.4.1",
+    "mongodb": "^3.1.12",
+    "node-cron": "^2.0.3",
+    "promise": "^8.0.2",
+    "request": "^2.88.0",
+    "swagger-tools": "^0.10.4",
+    "uuid": "^3.2.1"
+  },
+  "devDependencies": {
+    "eslint": "^5.12.0",
+    "husky": "^1.2.0",
+    "mocha": "^6.2.1",
+    "nyc": "^14.1.1"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "lint": "./node_modules/.bin/eslint app.js config/ api/ --fix",
+    "test": "nyc --reporter=html --reporter=json-summary mocha"
+  },
+  "author": "",
+  "license": "ISC"
+}
