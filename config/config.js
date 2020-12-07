@@ -15,9 +15,9 @@ function isK8sEnv() {
 	return process.env.KUBERNETES_SERVICE_HOST && process.env.KUBERNETES_SERVICE_PORT && process.env.ODPENV == 'K8s';
 }
 
-const odpNS = process.env.ODP_NAMESPACE;
-logger.info(`ODP_NAMESPACE :: ${process.env.ODP_NAMESPACE}`);
-if (isK8sEnv() && !odpNS) throw new Error('ODP_NAMESPACE not found. Please check your configMap');
+const odpNS = process.env.DATA_STACK_NAMESPACE;
+logger.info(`DATA_STACK_NAMESPACE :: ${process.env.DATA_STACK_NAMESPACE}`);
+if (isK8sEnv() && !odpNS) throw new Error('DATA_STACK_NAMESPACE not found. Please check your configMap');
 
 function isDockerEnv() {
 	return fs.existsSync('/.dockerenv');
@@ -82,17 +82,17 @@ module.exports = {
 	logQueueName: 'systemService',
 	odpNS: odpNS,
 	NATSConfig: {
-		url: process.env.NATS_HOST || 'nats://127.0.0.1:4222',
-		user: process.env.NATS_USER || '',
-		pass: process.env.NATS_PASS || '',
-		// maxReconnectAttempts: process.env.NATS_RECONN_ATTEMPTS || 500,
-		// reconnectTimeWait: process.env.NATS_RECONN_TIMEWAIT || 500
-		maxReconnectAttempts: process.env.NATS_RECONN_ATTEMPTS || 500,
+		url: process.env.MESSAGING_HOST || 'nats://127.0.0.1:4222',
+		user: process.env.MESSAGING_USER || '',
+		pass: process.env.MESSAGING_PASS || '',
+		// maxReconnectAttempts: process.env.MESSAGING_RECONN_ATTEMPTS || 500,
+		// reconnectTimeWait: process.env.MESSAGING_RECONN_TIMEWAIT_MILLI || 500
+		maxReconnectAttempts: process.env.MESSAGING_RECONN_ATTEMPTS || 500,
 		connectTimeout: 2000,
-		stanMaxPingOut: process.env.NATS_RECONN_TIMEWAIT || 500
+		stanMaxPingOut: process.env.MESSAGING_RECONN_TIMEWAIT_MILLI || 500
 	},
 	mongoOptions: {
 		numberOfRetries: process.env.MONGO_RECONN_TRIES,
-		retryMiliSeconds: process.env.MONGO_RECONN_TIME
+		retryMiliSeconds: process.env.MONGO_RECONN_TIME_MILLI
 	}
 };
