@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "****************************************************"
-echo "odp:dm :: Copying yaml file "
+echo "data.stack:dm :: Copying yaml file "
 echo "****************************************************"
 if [ ! -d $WORKSPACE/../yamlFiles ]; then
     mkdir $WORKSPACE/../yamlFiles
@@ -21,7 +21,7 @@ fi
 
 cd $WORKSPACE/../yamlFiles/
 echo "****************************************************"
-echo "odp:dm :: Preparing yaml file "
+echo "data.stack:dm :: Preparing yaml file "
 echo "****************************************************"
 sed -i.bak s/__release_tag__/"'$1'"/ dm.$REL.yaml
 sed -i.bak s/__release__/$REL/ dm.$REL.yaml

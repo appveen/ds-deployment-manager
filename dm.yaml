@@ -40,7 +40,7 @@ spec:
           secretName: odp-gcr-json-key
       containers:
         - name: dm
-          image: '__docker_registry_server__/odp:dm.__release__'
+          image: '__docker_registry_server__/data.stack:dm.__release__'
           ports:
             - containerPort: 10709
           securityContext:
