@@ -2,7 +2,7 @@
 const depMan = require('./deploymentManager.js');
 const fs = require('fs-extra');
 const AdmZip = require('adm-zip');
-const kubeutil = require('@appveen/odp-utils').kubeutil;
+const kubeutil = require('@appveen/data.stack-utils').kubeutil;
 let exec = require('child_process').exec;
 // const docker = require('../utils/docker.js');
 const k8s = require('../utils/k8s.js');
