@@ -1,4 +1,4 @@
-const kubeutil = require('@appveen/odp-utils').kubeutil;
+const kubeutil = require('@appveen/data.stack-utils').kubeutil;
 const logger = global.logger;
 let release = process.env.RELEASE;
 

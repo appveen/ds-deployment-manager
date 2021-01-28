@@ -1,11 +1,11 @@
 {
   "name": "ds-deployment-manager",
-  "version": "3.9.0",
+  "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "dependencies": {
+    "@appveen/data.stack-utils": "^1.0.5",
     "@appveen/gridfs-stream": "1.0.0",
-    "@appveen/odp-utils": "git+https://github.com/appveen/odp-utils.git",
     "@appveen/swagger-mongoose-crud": "1.1.2",
     "@appveen/utils": "1.1.2",
     "adm-zip": "^0.4.13",
