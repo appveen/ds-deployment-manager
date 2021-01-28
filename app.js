@@ -43,8 +43,6 @@ app.use(logToQueue);
 if (conf.isK8sEnv()) {
 	logger.info('*** K8s environment detected ***');
 	logger.info('Image version: ' + process.env.IMAGE_TAG);
-} else if (fs.existsSync('/.dockerenv')) {
-	logger.info('*** Docker environment detected ***');
 } else {
 	logger.info('*** Local environment detected ***');
 }
