@@ -8,7 +8,7 @@ const logger = global.logger;
 const destroyDeploymentRetry = 5;
 var e = {};
 
-let isK8sEnv = process.env.KUBERNETES_SERVICE_HOST && process.env.KUBERNETES_SERVICE_PORT
+let isK8sEnv = process.env.KUBERNETES_SERVICE_HOST && process.env.KUBERNETES_SERVICE_PORT;
 
 e.deployService = (_schema, _isUpdate, _oldData) => {
 	return new Promise((resolve, reject) => {
