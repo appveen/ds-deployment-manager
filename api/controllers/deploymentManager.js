@@ -8,11 +8,13 @@ const logger = global.logger;
 const destroyDeploymentRetry = 5;
 var e = {};
 
+let isK8sEnv = process.env.KUBERNETES_SERVICE_HOST && process.env.KUBERNETES_SERVICE_PORT;
+
 e.deployService = (_schema, _isUpdate, _oldData) => {
 	return new Promise((resolve, reject) => {
 		var startPromise = new Promise.resolve();
 		startPromise.then(() => {
-			if (process.env.ODPENV == 'K8s') {
+			if (isK8sEnv) {
 				logger.info('Kubernetes environment detected');
 				return docker.build(_schema)
 					.then(() => logger.info('Docker image created for ' + _schema.image + ':' + _schema.version))
@@ -74,7 +76,7 @@ e.deployService = (_schema, _isUpdate, _oldData) => {
 			.then((status) => {
 				logger.info('Environment is:' + process.env.ODPENV);
 
-				if (process.env.ODPENV == 'K8s') {
+				if (isK8sEnv) {
 					resolve();
 				} else {
 					if (status === 'online')
@@ -100,7 +102,7 @@ function destroyDeployment(count, config, isRepair) {
 		var id = config.image;
 		var startPromise = new Promise.resolve();
 		startPromise.then(() => {
-			if (process.env.ODPENV == 'K8s') {
+			if (isK8sEnv) {
 				logger.info('Environment is Kube8');
 				return k8s.deploymentDelete(doc)
 					.then(() => logger.info('Deployment deleted for ' + id))

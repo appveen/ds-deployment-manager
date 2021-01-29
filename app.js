@@ -8,7 +8,10 @@ const bodyParser = require('body-parser');
 if (process.env.LOG_LEVEL == 'DB_DEBUG') { process.env.LOG_LEVEL = 'debug'; }
 const utils = require('@appveen/utils');
 const log4js = utils.logger.getLogger;
-const loggerName = process.env.KUBERNETES_SERVICE_HOST && process.env.KUBERNETES_SERVICE_PORT && process.env.ODPENV == 'K8s' ? `[${process.env.DATA_STACK_NAMESPACE}][${process.env.HOSTNAME}]` : '[deploymentManager]';
+
+let version = require('./package.json').version;
+const loggerName = (process.env.KUBERNETES_SERVICE_HOST && process.env.KUBERNETES_SERVICE_PORT) ? `[${process.env.DATA_STACK_NAMESPACE}] [${process.env.HOSTNAME}] [DM ${version}]` : `[DM ${version}]`;
+
 const logger = log4js.getLogger(loggerName);
 const bluebird = require('bluebird');
 const fileUpload = require('express-fileupload');
@@ -27,21 +30,19 @@ app.use(bodyParser());
 var logMiddleware = utils.logMiddleware.getLogMiddleware(logger);
 app.use(logMiddleware);
 
-let odputils = require('@appveen/odp-utils');
+let dataStackUtils = require('@appveen/data.stack-utils');
 let queueMgmt = require('./api/utils/queueMgmt');
 
 let masking = [
 	{ url: '/dm/updateDeployment', path: ['deployment'] },
 	{ url: '/dm/deployment', path: ['deployment'] }
 ];
-let logToQueue = odputils.logToQueue('dep', queueMgmt.client, conf.logQueueName, 'deploymentManager.logs', masking);
+let logToQueue = dataStackUtils.logToQueue('dep', queueMgmt.client, conf.logQueueName, 'deploymentManager.logs', masking);
 app.use(logToQueue);
 
 if (conf.isK8sEnv()) {
 	logger.info('*** K8s environment detected ***');
 	logger.info('Image version: ' + process.env.IMAGE_TAG);
-} else if (fs.existsSync('/.dockerenv')) {
-	logger.info('*** Docker environment detected ***');
 } else {
 	logger.info('*** Local environment detected ***');
 }
