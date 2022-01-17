@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
-    "@appveen/data.stack-utils": "^1.0.17",
+    "@appveen/data.stack-utils": "^1.0.18",
     "@appveen/gridfs-stream": "1.0.0",
     "@appveen/swagger-mongoose-crud": "1.1.2",
     "@appveen/utils": "^2.1.3",
