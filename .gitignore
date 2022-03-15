@@ -40,3 +40,8 @@ generatedImages
 config/runtime.yaml
 .vscode/launch.json
 .DS_Store
+send.sh
+build.sh
+bifrost-docker-reg-conf.yaml
+dm.dev.yaml
+registries.conf.yaml
