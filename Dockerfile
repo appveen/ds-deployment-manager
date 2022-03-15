@@ -16,6 +16,15 @@ FROM appveen/podman:1.6.4 AS podman-builder
 
 FROM node:12-alpine
 
+RUN set -ex; \
+    apk add --no-cache --virtual .fetch-deps \
+      ca-certificates \
+      curl \
+      tar \
+      git \
+      openssl \
+      podman
+
 # RUN set -ex; \
 #     apk add --no-cache --virtual .fetch-deps \
 #       ca-certificates \
