@@ -2,7 +2,7 @@
 # DOCKER
 ###############################################################################################
 
-FROM docker:18 as docker 
+# FROM docker:18 as docker 
 
 ###############################################################################################
 # PODMAN-BUILDER
@@ -16,25 +16,24 @@ FROM appveen/podman:1.6.4 AS podman-builder
 
 FROM node:12-alpine
 
-RUN set -ex; \
-    apk add --no-cache --virtual .fetch-deps \
-      ca-certificates \
-      curl \
-      tar \
-      git \
-      openssl \
-      python \
-      py-pip \
-      less \
-      device-mapper gpgme ip6tables libseccomp libselinux ostree && \
-    pip install --upgrade awscli==1.14.5 python-magic && \
-    apk -v --purge del py-pip
+# RUN set -ex; \
+#     apk add --no-cache --virtual .fetch-deps \
+#       ca-certificates \
+#       curl \
+#       tar \
+#       git \
+#       openssl \
+#       python \
+#       py-pip \
+#       less \
+#       device-mapper gpgme ip6tables libseccomp libselinux ostree && \
+#     pip install --upgrade awscli==1.14.5 python-magic && \
+#     apk -v --purge del py-pip
 
-COPY --from=docker /bin /bin
-COPY --from=docker /usr /usr
-COPY --from=docker /var /var
-COPY --from=docker /etc /etc
-
+# COPY --from=docker /bin /bin
+# COPY --from=docker /usr /usr
+# COPY --from=docker /var /var
+# COPY --from=docker /etc /etc
 COPY --from=podman-builder /usr/bin/conmon /usr/bin/
 COPY --from=podman-builder /usr/bin/runc /usr/bin/
 COPY --from=podman-builder /usr/bin/podman /usr/bin/

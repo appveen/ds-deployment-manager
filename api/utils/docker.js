@@ -20,7 +20,7 @@ if (dockerRegistryType.length > 0) dockerRegistryType = dockerRegistryType.toUpp
 let dockerReg = process.env.DOCKER_REGISTRY_SERVER ? process.env.DOCKER_REGISTRY_SERVER : '';
 if (dockerReg.length > 0 && !dockerReg.endsWith('/') && dockerRegistryType != 'ECR' ) dockerReg += '/';
 
-let CONTAINER_ENGINE = process.env.DOCKER_CONTAINER_ENGINE ? process.env.DOCKER_CONTAINER_ENGINE : 'docker';
+let CONTAINER_ENGINE = process.env.DOCKER_CONTAINER_ENGINE ? process.env.DOCKER_CONTAINER_ENGINE : 'podman';
 logger.info(`CONTAINER_ENGINE :: ${CONTAINER_ENGINE}`);
 
 let CONTAINER_ENGINE_TLS_VERIFY = parseBoolean(process.env.DOCKER_CONTAINER_ENGINE_TLS_VERIFY);

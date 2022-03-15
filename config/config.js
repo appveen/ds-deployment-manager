@@ -20,21 +20,17 @@ if (isK8sEnv() && !odpNS) throw new Error('DATA_STACK_NAMESPACE not found. Pleas
 
 function get(_service) {
 	if (isK8sEnv()) {
-		if (_service == 'ne') return 'http://ne.capiot';
-		if (_service == 'sm') return 'http://sm.capiot';
-		if (_service == 'pm') return 'http://pm.capiot';
-		if (_service == 'user') return 'http://user.capiot';
-		if (_service == 'gw') return 'http://gw.capiot';
-		if (_service == 'wf') return 'http://wf.capiot';
-		if (_service == 'sec') return 'http://sec.capiot';
+		if (_service == 'ne') return `http://ne.${odpNS}`;
+		if (_service == 'sm') return `http://sm.${odpNS}`;
+		if (_service == 'pm') return `http://pm.${odpNS}`;
+		if (_service == 'user') return `http://user.${odpNS}`;
+		if (_service == 'gw') return `http://gw.${odpNS}`;
 	} else {
 		if (_service == 'ne') return 'http://localhost:10010';
 		if (_service == 'sm') return 'http://localhost:10003';
 		if (_service == 'pm') return 'http://localhost:10011';
 		if (_service == 'user') return 'http://localhost:10004';
 		if (_service == 'gw') return 'http://localhost:9080';
-		if (_service == 'wf') return 'http://localhost:10006';
-		if (_service == 'sec') return 'http://localhost:10007';
 	}
 }
 
@@ -53,10 +49,8 @@ module.exports = {
 	baseUrlSM: get('sm') + '/sm',
 	baseUrlNE: get('ne') + '/ne',
 	baseUrlUSR: get('user') + '/rbac',
-	baseUrlWF: get('wf') + '/workflow',
-	baseUrlSEC: get('sec') + '/sec',
 	mongoUrl: process.env.MONGO_AUTHOR_URL || 'mongodb://localhost',
-	mongoAuthorDb: process.env.MONGO_AUTHOR_DBNAME || 'odpConfig',
+	mongoAuthorDb: process.env.MONGO_AUTHOR_DBNAME || 'dataStackConfig',
 	validationApi: get('user') + '/rbac/validate',
 	isK8sEnv: isK8sEnv,
 	isCosmosDB: isCosmosDB,
