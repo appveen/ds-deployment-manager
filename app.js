@@ -4,7 +4,6 @@ const path = require('path');
 const jsyaml = require('js-yaml');
 const swaggerTools = require('swagger-tools');
 const express = require('express');
-const bodyParser = require('body-parser');
 if (process.env.LOG_LEVEL == 'DB_DEBUG') { process.env.LOG_LEVEL = 'debug'; }
 const utils = require('@appveen/utils');
 const log4js = utils.logger.getLogger;
@@ -23,10 +22,9 @@ const conf = require('./config/config.js');
 
 const app = express();
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(fileUpload());
-app.use(bodyParser());
 var logMiddleware = utils.logMiddleware.getLogMiddleware(logger);
 app.use(logMiddleware);
 
@@ -56,7 +54,7 @@ var options = {
 
 // The Swagger document (require it, build it programmatically, fetch it from a URL, ...)
 var spec = fs.readFileSync(path.join(__dirname, 'api/swagger/swagger.yaml'), 'utf8');
-var swaggerDoc = jsyaml.safeLoad(spec);
+var swaggerDoc = jsyaml.load(spec);
 
 swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
 
