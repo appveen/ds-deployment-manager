@@ -20,15 +20,15 @@ RUN apk update
 RUN apk upgrade
 
 RUN set -ex; apk add --no-cache --virtual .fetch-deps 
-RUN set -ex; ca-certificates 
-RUN set -ex; curl 
-RUN set -ex; tar 
-RUN set -ex; git 
-RUN set -ex; openssl 
-RUN set -ex; python3
-RUN set -ex; py-pip 
-RUN set -ex; less 
-RUN set -ex; device-mapper gpgme ip6tables libseccomp libselinux ostree
+RUN set -ex; apk add ca-certificates 
+RUN set -ex; apk add curl 
+RUN set -ex; apk add tar 
+RUN set -ex; apk add git 
+RUN set -ex; apk add openssl 
+RUN set -ex; apk add python3
+RUN set -ex; apk add py-pip 
+RUN set -ex; apk add less 
+RUN set -ex; apk add device-mapper gpgme ip6tables libseccomp libselinux ostree
 RUN set -ex; pip3 install --upgrade awscli==1.14.5 python-magic
 RUN set -ex; apk -v --purge del py-pip
 
