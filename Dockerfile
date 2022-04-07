@@ -19,19 +19,18 @@ FROM node:14.19.0-alpine3.15
 RUN apk update
 RUN apk upgrade
 
-RUN set -ex; \
-    apk add --no-cache --virtual .fetch-deps \
-      ca-certificates \
-      curl \
-      tar \
-      git \
-      openssl \
-      python \
-      py-pip \
-      less \
-      device-mapper gpgme ip6tables libseccomp libselinux ostree && \
-    pip install --upgrade awscli==1.14.5 python-magic && \
-    apk -v --purge del py-pip
+RUN set -ex; apk add --no-cache --virtual .fetch-deps 
+RUN set -ex; ca-certificates 
+RUN set -ex; curl 
+RUN set -ex; tar 
+RUN set -ex; git 
+RUN set -ex; openssl 
+RUN set -ex; python3
+RUN set -ex; py-pip 
+RUN set -ex; less 
+RUN set -ex; device-mapper gpgme ip6tables libseccomp libselinux ostree
+RUN set -ex; pip3 install --upgrade awscli==1.14.5 python-magic
+RUN set -ex; apk -v --purge del py-pip
 
 COPY --from=docker /bin /bin
 COPY --from=docker /usr /usr
