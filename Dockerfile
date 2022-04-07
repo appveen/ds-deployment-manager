@@ -47,7 +47,7 @@ WORKDIR /app
 COPY package.json /app
 
 RUN npm install --production
-RUN npm audit --fix
+# RUN npm audit --fix
 
 COPY api /app/api
 COPY app.js /app
