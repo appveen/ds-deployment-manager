@@ -14,7 +14,10 @@ FROM appveen/podman:1.6.4 AS podman-builder
 # Take what is only required
 ###############################################################################################
 
-FROM node:12-alpine
+FROM node:14.19.0-alpine3.15
+
+RUN apk update
+RUN apk upgrade
 
 RUN set -ex; \
     apk add --no-cache --virtual .fetch-deps \
@@ -47,6 +50,7 @@ WORKDIR /app
 COPY package.json /app
 
 RUN npm install --production
+RUN npm audit fix
 
 COPY api /app/api
 COPY app.js /app
