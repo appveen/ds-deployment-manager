@@ -5,8 +5,8 @@
   "main": "app.js",
   "dependencies": {
     "@appveen/data.stack-utils": "^1.0.19",
-    "@appveen/swagger-mongoose-crud": "1.2.6",
-    "@appveen/utils": "^2.1.4",
+    "@appveen/swagger-mongoose-crud": "1.2.7",
+    "@appveen/utils": "^2.1.6",
     "adm-zip": "^0.5.9",
     "bluebird": "^3.5.0",
     "express": "^4.17.3",

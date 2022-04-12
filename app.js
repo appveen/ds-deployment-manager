@@ -35,7 +35,7 @@ app.use(fileUpload());
 app.use(logMiddleware);
 app.use(logToQueue);
 
-app.use('/dm', require('./api/controllers/deployment.controller'));
+app.use('/dm', require('./api/controllers/controller'));
 
 if (conf.isK8sEnv()) {
 	logger.info('*** K8s environment detected ***');
