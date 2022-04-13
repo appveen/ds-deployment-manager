@@ -1,6 +1,9 @@
 
 'use strict';
 
+const _ = require('lodash');
+
+
 const deploymentController = require('./deploymentController.js');
 
 // var exports = {};
@@ -41,8 +44,14 @@ module.exports = router;
 
 
 function mapSwaggerParams(req, res, next) {
+	const temp = {};
+	_.merge(temp, req.params, req.query);
 	const params = {};
-	Object.assign(params, req.params, req.query);
+	// Object.assign(params, req.params, req.query);
+	Object.keys(temp).forEach(key => {
+		params[key] = { value: temp[key] };
+	});
+	// logger.debug(req.params, req.query, params);
 	req.swagger = {
 		params
 	};
